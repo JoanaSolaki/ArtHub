@@ -3,6 +3,7 @@
     --secondaryColor: #80FFA4;
     --tertiaryColor: #ECBC62;
     --darkColor: #403434;
+    --white: white;
     --successColor: #2C7F4C;
     --warningColor: #F88E2A;
     --dangerColor: #F84949;
@@ -23,7 +24,7 @@ body {
 }
 
 .navbar {
-    background-color: white;
+    background-color: var(--white);
 }
 
 .wrapper {
@@ -40,6 +41,16 @@ p {
     color: var(--darkColor);
 }
 
+.professeur {
+    width: 300px;
+    background-color: var(--white);
+}
+
+.professeur img {
+    width: 100%;
+    object-fit: contain;
+}
+
 .infoCard {
-    max-width: 300px;
+    padding: 20px;
 }
