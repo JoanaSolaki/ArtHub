@@ -6,6 +6,7 @@ function classLoader($className) {
     $folderPathClasses = __DIR__ . "/Classes/";
     $folderPathModels = __DIR__ . "/Models/";
     $folderPathRepositories = __DIR__ . "/Repositories/";
+    $folderPathControllers = __DIR__ . "/Controllers/";
 
     //Vérifier si le fichier existe, si oui, on le require
     if (file_exists($folderPathClasses . $filePathClass)) {
@@ -19,14 +20,18 @@ function classLoader($className) {
     if (file_exists($folderPathRepositories . $filePathClass)) {
         require $folderPathRepositories . $filePathClass;
     }
+
+    if (file_exists($folderPathControllers . $filePathClass)) {
+        require $folderPathControllers . $filePathClass;
+    }
 }
 
 spl_autoload_register('classLoader');
 
 session_start();
 
-$database = new Database();
+/* $database = new Database();
 
-$database->getDb();
+$database->getDb(); */
 
 require_once __DIR__ . "/router.php";

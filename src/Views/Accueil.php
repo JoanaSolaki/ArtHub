@@ -1,6 +1,6 @@
-<?php 
-require "header.php";
-require "navbar.php";
+<?php
+require "include/header.php";
+require "include/navbar.php";
 ?>
     <section class="wrapper">
 
@@ -8,7 +8,7 @@ require "navbar.php";
 
     <h2>Liste de professeurs</h2>
 
-    <div class="professeur">
+    <div class="professeur flex">
         <img src="" alt="">
         <div class="infoCard">
             <h3>Nom - Prénom</h3>
@@ -20,6 +20,4 @@ require "navbar.php";
 
     </section>
 
-
-    
-<?php require "footer.php"; ?>
+<?php require "include/footer.php"; ?>

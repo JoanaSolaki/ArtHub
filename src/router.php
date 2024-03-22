@@ -1,20 +1,19 @@
 <?php
-
-/* require_once __DIR__ . "/Controllers/HomeController.php";
-require_once __DIR__ . "/Controllers/StudentsController.php";
+require_once "config.php";
 
 $route = $_SERVER['REQUEST_URI'];
-echo('<p>' . $route . '</p>');
+//echo('<p>' . $route . '</p>');
 
+$accueilPage = new AccueilController();
 
 switch ($route) {
-    case URL_HOMEPAGE:
-        $homePage->index();
+    case URL_ACCUEILPAGE:
+        $accueilPage->index();
         break;
     
     default:
-        $homePage->pageNotFound();
+        $accueilPage->pageNotFound();
         break;
-} */
+}
 
 ?>

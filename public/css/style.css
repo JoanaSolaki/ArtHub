@@ -1,0 +1,45 @@
+:root {
+    --mainColor: #FF8080;
+    --secondaryColor: #80FFA4;
+    --tertiaryColor: #ECBC62;
+    --darkColor: #403434;
+    --successColor: #2C7F4C;
+    --warningColor: #F88E2A;
+    --dangerColor: #F84949;
+}
+
+body {
+    background-image: url(../img/bg.jpg);
+    background-position: fixed center;
+    background-size: cover;
+    margin: 0 auto;
+    width: 100vh;
+    font-family: "Inter", sans-serif;
+}
+
+.flex {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.navbar {
+    background-color: white;
+}
+
+.wrapper {
+    max-width: 1000px;
+    background-color: rgba(255, 255, 255, 0.80);
+}
+
+h1, h2, h3 {
+    font-family: "Andika", sans-serif;
+    font-weight: 700;
+}
+
+p {
+    color: var(--darkColor);
+}
+
+.infoCard {
+    max-width: 300px;
+}
