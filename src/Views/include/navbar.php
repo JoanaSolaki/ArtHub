@@ -1,7 +1,7 @@
 <body>
-    <div class="navbar">
+    <div class="navbar flex">
         <a href="/" class="logo">ArtHub</a>
-        <div>
+        <div class="flex">
             <?php //Vérifier si la session est vide dans "l'utilisateurId" vu que c'est là qu'est rangée l'id
                 if (isset($_SESSION['utilisateurId'])) {
                     $id = $_SESSION ['utilisateurId'];
