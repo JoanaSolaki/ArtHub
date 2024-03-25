@@ -35,7 +35,7 @@ class UtilisateurRepository extends Database {
             "nom" => $newNom,
             "prenom" => $newPrenom,
             "mdp" => $newMdp,
-            "email" => $newMail
+            "mail" => $newMail
         ]);
 
         echo "<p>Bonjour " . $newPrenom . ", votre compte à bien été créer !</p>";

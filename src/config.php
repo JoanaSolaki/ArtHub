@@ -5,3 +5,5 @@ define("DATABASE_USERNAME", "root");
 define("DATABASE_PASSWORD", "");
 
 define("URL_ACCUEILPAGE", "/");
+define("URL_SINSCRIREPAGE", "/Sinscrire");
+define("URL_PROFILPAGE", "/Profil?id");

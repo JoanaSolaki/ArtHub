@@ -45,7 +45,7 @@ Class Reservation {
     }
 
     public function getSalleId () {
-        return $this->professeur_id;
+        return $this->salle_id;
     }
     
     public function setSalleId ($salle_id) {
