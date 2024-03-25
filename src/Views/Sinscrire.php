@@ -6,7 +6,7 @@ require "include/navbar.php";
 
     <h1>S'inscrire</h1>
 
-    <form action="/Sinscrire" method="post">
+    <form action="/sinscrire" method="post">
         <label for="nom">Nom
             <input type="text" name="nom" id="nom" minlength="3" maxlength="50" required>
         </label>
@@ -19,11 +19,15 @@ require "include/navbar.php";
             <input type="password" name="mdp" id="mdp" minlength="7" required>
         </label>
 
+        <!-- <label for="mdpConfirm"> Confirmation du mot de passe
+            <input type="password" name="mdpConfirm" id="mdpConfirm" minlength="7" required>
+        </label> -->
+
         <label for="mail"> E-mail
             <input type="mail" name="mail" id="mail" minlength="3"  maxlength="80" required>
         </label>
 
-        <input type="submit" value="submit">
+        <input type="submit" value="S'inscrire">
     </form>
 
     </section>

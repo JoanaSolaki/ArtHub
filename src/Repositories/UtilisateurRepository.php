@@ -38,9 +38,11 @@ class UtilisateurRepository extends Database {
             "mail" => $newMail
         ]);
 
-        echo "<p>Bonjour " . $newPrenom . ", votre compte à bien été créer !</p>";
+        $id = $this->getDb()->lastInsertId();
 
         $requete->closeCursor();
+
+        return $id;
     }
 
     public function update ($nom, $prenom, $mdp, $mail, $utilisateurId) {

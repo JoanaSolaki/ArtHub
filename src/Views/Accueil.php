@@ -8,16 +8,20 @@ require "include/navbar.php";
 
     <h2>Liste de professeurs</h2>
 
-    <div class="professeur flex">
-        <img src="public/img/prof.jpg" alt="Photo de profil de professeur">
-        <div class="infoCard flex">
-            <h3>Nom - Prénom</h3>
-            <p>Some quick example text to build on the card title and make up the bulk of the card's content.<br>
-            30€/h</p>
-            <button>Réserver</button>
-        </div>
-    </div>
-
+    <?php
+        foreach ($professeurs as $professeur) {
+                echo '<div class="professeur flex">
+                    <img src="public/img/prof.jpg" alt="Photo de profil de professeur">
+                    <div class="infoCard flex">' . 
+                    '<h3>' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '</h3>' .
+                    '<p>' . $professeur->getDescription() . '<br>' .
+                    $professeur->getPrixHeure() . '€/H<br>' .
+                    $professeur->getVille() . '</p>' .
+                    '<button>Réserver</button>
+                </div>
+            </div>';
+                }
+    ?>
     </section>
 
 <?php require "include/footer.php"; ?>

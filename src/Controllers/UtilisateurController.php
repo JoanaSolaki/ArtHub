@@ -7,15 +7,17 @@
         function index () {
             $utilisateurRepository = new UtilisateurRepository();
 
-            $id = $_GET['id'];
+            $id = $_SESSION ['utilisateurId'];
 
             $utilisateur = $utilisateurRepository->selectById($id);
 
+            $titre = 'Profil - ArtHub';
+
             $viewData = [
-                'nom' => $utilisateur,
-                'prenom' => $utilisateur,
-                'mail' => $utilisateur
+                'titre' => $titre,
+                'utilisateur' => $utilisateur
             ];
+
 
             $this->render("Profil", $viewData);
         }

@@ -4,17 +4,22 @@
     class SinscrireController {
         use Response;
         function index () {
-            $this->render("Sinscrire");
+            $titre = "S'inscrire";
+            $viewData = [
+                'titre' => $titre
+            ];
+            $this->render("Sinscrire", $viewData);
         }
         function sinscrire($nom, $prenom, $mdp, $mail) {
-
             $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);
 
             $newUtilisateur = new UtilisateurRepository();
 
-            $newUtilisateur->create($nom, $prenom, $mdpHash, $mail);
+            $newUtilisateurId = $newUtilisateur->create($nom, $prenom, $mdpHash, $mail);
 
-            header('/Profil?id');
+            $_SESSION ['utilisateurId'] = $newUtilisateurId;
+
+            header("Location: /profil");
         }
     }
 

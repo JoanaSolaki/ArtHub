@@ -4,11 +4,29 @@
     class AccueilController {
         use Response;
         function index () {
-            $this->render("Accueil");
+            $titre = 'ArtHub';
+
+            $professeurRepository = new ProfesseurRepository();
+            $professeurs = $professeurRepository->selectAll();
+
+            $viewData = [
+                'titre' => $titre,
+                'professeurs' => $professeurs
+            ];
+            
+            $this->render("Accueil", $viewData);
         }
 
-        function pageNotFound () {
-            $this->render("404");
+        function pageNotFound () { 
+            $titre = '404 - ArtHub';
+            $viewData = [
+                'titre' => $titre
+            ];
+            $this->render("404", $viewData);
+        }
+
+        function deconnexion () {
+            $this->render("Deconnexion");
         }
     }
 ?>
