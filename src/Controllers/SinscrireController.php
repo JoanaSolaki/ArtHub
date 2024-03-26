@@ -11,15 +11,33 @@
             $this->render("Sinscrire", $viewData);
         }
         function sinscrire($nom, $prenom, $mdp, $mail) {
-            $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);
+            $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);   
 
             $newUtilisateur = new UtilisateurRepository();
+                        
+            $newMail = $mail;
+            $users = $newUtilisateur->selectAllMail();
+            
+            $emailExiste = false;
+            foreach ($users as $user) {
+                if($user->getMail() === $newMail) {
+                    $emailExiste = true;
+                    break;
+                }
+            }
 
-            $newUtilisateurId = $newUtilisateur->create($nom, $prenom, $mdpHash, $mail);
+            if ($emailExiste == true) {
+                $titre = "Erreur inscription";
+                $viewData = [
+                    'titre' => $titre
+                ];
+                $this->render("ErreurInscription", $viewData);
+            } else {
+                $newUtilisateurId = $newUtilisateur->create($nom, $prenom, $mdpHash, $newMail);
+                $_SESSION['utilisateurId'] = $newUtilisateurId;
+                header("Location: /profil");
+            }
 
-            $_SESSION ['utilisateurId'] = $newUtilisateurId;
-
-            header("Location: /profil");
         }
     }
 

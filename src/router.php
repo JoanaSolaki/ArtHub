@@ -24,7 +24,11 @@ switch ($route) {
         break;
 
     case URL_CONNEXIONPAGE: //Page de connexion
-        $connexionPage->index();
+        if ($methode == 'GET') {
+            $connexionPage->index();
+        } else {
+            $connexionPage->connexion($_POST['mail'], $_POST['mdp']);
+        }
         break;
 
     case URL_PROFILPAGE: //Page utilisateur

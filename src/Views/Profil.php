@@ -1,7 +1,9 @@
 <?php
+if (!isset($_SESSION['utilisateurId'])) {
+    header('Location: /seconnecter');
+}
 require "include/header.php";
 require "include/navbar.php";
-
 ?>
     <section class="wrapper">
 

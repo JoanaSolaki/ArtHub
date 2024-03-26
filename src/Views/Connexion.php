@@ -6,7 +6,7 @@ require "include/navbar.php";
 
         <h1>Se connecter</h1>
 
-        <form action="/seconnecter" method="post">
+        <form action="<?php URL_CONNEXIONPAGE ?>" method="post">
 
             <label for="mail"> E-mail
                 <input type="mail" name="mail" id="mail" minlength="3"  maxlength="80" required>

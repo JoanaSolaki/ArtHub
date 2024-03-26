@@ -12,6 +12,30 @@ class UtilisateurRepository extends Database {
         return $data;
     }
 
+    public function selectAllMail() {
+        $requete = $this->getDb()->query('SELECT mail FROM utilisateur');
+
+        $data = $requete->fetchAll(PDO::FETCH_CLASS, Utilisateur::class);
+
+        $requete->closeCursor();
+
+        return $data;
+    }
+
+    public function selectUserByMail($mail) {
+        $requete = $this->getDb()->prepare('SELECT * FROM utilisateur WHERE mail = :mail');
+
+        $requete->execute([
+            "mail" => $mail
+        ]);
+
+        $data = $requete->fetch();
+
+        $requete->closeCursor();
+
+        return $data;
+    }
+
     public function selectById ($utilisateurId) {
         $requete = $this->getDb()->prepare('SELECT * FROM utilisateur WHERE id = :id');
 
