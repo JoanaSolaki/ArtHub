@@ -8,22 +8,22 @@ require "include/navbar.php";
 
         <h2>Liste de professeurs</h2>
 
-        <div class="flex">
+        <article class="flex">
         <?php
             foreach ($professeurs as $professeur) {
-                    echo '<div class="professeur flex">
-                        <img src="public/img/prof.jpg" alt="Photo de profil de professeur">
-                        <div class="infoCard flex">' . 
-                        '<h3>' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '</h3>' .
-                        '<p>' . $professeur->getDescription() . '<br>' .
-                        $professeur->getPrixHeure() . '€/H<br>' .
-                        $professeur->getVille() . '</p>' .
-                        '<button>Réserver</button>
-                    </div>
+                echo '<div class="professeur flex">
+                    <img src="public/img/prof.jpg" alt="Photo de profil de professeur">
+                    <div class="infoCard flex">' . 
+                    '<h3>' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '</h3>' .
+                    '<p>' . $professeur->getDescription() . '<br>' .
+                    $professeur->getPrixHeure() . '€/H<br>' .
+                    $professeur->getVille() . '</p>' .
+                    '<a href="/reservation">Réserver</a>
+                  </div>
                 </div>';
-                    }
+            }
         ?>
-        </div>
+        </article>
     </section>
 
 <?php require "include/footer.php"; ?>

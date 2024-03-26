@@ -6,12 +6,12 @@ require "include/navbar.php";
 
         <h1>S'inscrire</h1>
 
-        <form action="<?php URL_SINSCRIREPAGE ?>" method="post">
+        <form action="<?php URL_SINSCRIREPAGE ?>" method="post" class="flex">
             <label for="nom">Nom
                 <input type="text" name="nom" id="nom" minlength="3" maxlength="50" required>
             </label>
 
-            <label for="prenom">prenom                          
+            <label for="prenom">Prenom                          
                 <input type="text" name="prenom" id="prenom" minlength="3" maxlength="50" required>
             </label>
 
