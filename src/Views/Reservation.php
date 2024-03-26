@@ -1,0 +1,53 @@
+<?php
+if (!isset($_SESSION['utilisateurId'])) {
+    header('Location: /seconnecter');
+}
+require "include/header.php";
+require "include/navbar.php";
+?>
+    <section class="wrapper">
+
+        <h1>Réserver votre cours</h1>
+
+        <form action="<?php URL_RESERVATIONPAGE ?>" method="post" class="flex">
+
+            <label for="date"> Date
+                <input type="date" name="date" id="date" required>
+            </label>
+
+            <label for="heure"> Heure (de 8h à 17h)
+                <input type="time" name="heure" id="heure" value="08:00" min="08:00" max="17:00" required>
+            </label>
+            
+            <label for="professeur">Choissisez votre professeur :</label>
+            <select name="professeur"> 
+                <?php
+                    foreach ($professeurs as $professeur) {
+                        echo '<option value="' . $professeur->getId() .'">' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '</option>';
+                    }
+                ?>
+            </select>
+            
+            <label for="salle">Choissisez votre salle :</label>
+            <select name="salle"> 
+                <?php
+                    foreach ($salles as $salle) {
+                        echo '<option value="' . $salle->getId() .'">' . $salle->getAdresse() . ' ' . $salle->getVille() . '</option>';
+                    }
+                ?>
+            </select>
+            
+            <fieldset name="cours" multiple> 
+                <legend for="cours">Choissisez vos cours :</legend>
+                <?php
+                    foreach ($cours as $cours) {
+                        echo '<input type="checkbox" value="' . $cours->getId() .'">' . $cours->getType() . '</input>';
+                    }
+                ?>
+            </fieldset>
+
+            <input type="submit" value="Reserver">
+        </form>
+    </section>
+
+<?php require "include/footer.php"; ?>

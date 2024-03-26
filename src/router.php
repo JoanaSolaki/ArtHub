@@ -9,6 +9,7 @@ $accueilPage = new AccueilController();
 $sinscrirePage = new SinscrireController();
 $connexionPage = new ConnexionController();
 $utilisateurPage = new UtilisateurController();
+$reservationPage = new ProfesseursController();
 
 switch ($route) {
     case URL_ACCUEILPAGE: //Page d'accueil
@@ -33,6 +34,10 @@ switch ($route) {
 
     case URL_PROFILPAGE: //Page utilisateur
         $utilisateurPage->index();
+        break;    
+
+    case URL_RESERVATIONPAGE: //Page utilisateur
+        $reservationPage->index();
         break;    
 
     case URL_DECONNEXION: //Page logout
