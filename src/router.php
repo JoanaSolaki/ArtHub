@@ -10,6 +10,7 @@ $sinscrirePage = new SinscrireController();
 $connexionPage = new ConnexionController();
 $utilisateurPage = new UtilisateurController();
 $reservationPage = new ProfesseursController();
+$modifierPage = new ModifierController();
 
 switch ($route) {
     case URL_ACCUEILPAGE: //Page d'accueil
@@ -24,10 +25,20 @@ switch ($route) {
         }
         break;
 
+    case URL_MODIFICATIONPAGE: //Page de modification
+        if ($methode == 'GET') {
+            $modifierPage->index();
+        } 
+        if ($methode == 'POST') {
+            $modifierPage->modifier($_POST['nom'], $_POST['prenom'], $_POST['mdp'], $_POST['mail'], $_SESSION['utilisateurId']);
+        }
+        break;
+
     case URL_CONNEXIONPAGE: //Page de connexion
         if ($methode == 'GET') {
             $connexionPage->index();
-        } else {
+        } 
+        if ($methode == 'POST') {
             $connexionPage->connexion($_POST['mail'], $_POST['mdp']);
         }
         break;

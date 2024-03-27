@@ -5,14 +5,22 @@ if (!isset($_SESSION['utilisateurId'])) {
 require "include/header.php";
 require "include/navbar.php";
 ?>
-    <section class="wrapper">
+<section class="wrapper">
 
     <h1>Votre Profil</h1>
 
-    <?php
-    echo "<p>" . $utilisateur->getPrenom() . " " . $utilisateur->getNom() . "<br>" . $utilisateur->getMail();
-    ?>
+    <article>
+        <?php
+        echo "<p>" . $utilisateur->getPrenom() . " " . $utilisateur->getNom() . "<br>" . $utilisateur->getMail();
+        ?>
+        <a href="/modifier">Modifier le profil</a>
+        <a href="">Supprimer mon compte</a>
+    </article>
 
-    </section>
+    <article>
+        <h2>Vos réservations :</h2>
+    </article>
+
+</section>
 
 <?php require "include/footer.php"; ?>

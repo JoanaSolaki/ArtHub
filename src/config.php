@@ -9,4 +9,5 @@ define("URL_SINSCRIREPAGE", "/sinscrire");
 define("URL_CONNEXIONPAGE", "/seconnecter");
 define("URL_PROFILPAGE", "/profil");
 define("URL_RESERVATIONPAGE", "/reservation");
+define("URL_MODIFICATIONPAGE", "/modifier");
 define("URL_DECONNEXION", "/deconnexion");
