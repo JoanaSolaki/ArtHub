@@ -11,3 +11,5 @@ define("URL_PROFILPAGE", "/profil");
 define("URL_RESERVATIONPAGE", "/reservation");
 define("URL_MODIFICATIONPAGE", "/modifier");
 define("URL_DECONNEXION", "/deconnexion");
+define("URL_SUPPRIMERDEMANDE", "/supprimer");
+define("URL_SUPPRIMER", "/delete");

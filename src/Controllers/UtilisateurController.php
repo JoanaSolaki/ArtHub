@@ -18,8 +18,29 @@
                 'utilisateur' => $utilisateur
             ];
 
-
             $this->render("Profil", $viewData);
+        }
+
+        function supprimer () {
+            $titre = 'Suppression';
+
+            $viewData = [
+                'titre' => $titre,
+            ];
+
+            $this->render("Supprimer", $viewData);
+        }
+
+        function delete () {
+            $utilisateurRepository = new UtilisateurRepository();
+
+            $id = $_SESSION ['utilisateurId'];
+            
+            $utilisateurRepository->delete($id);
+            
+            session_destroy();
+
+            header('Location: /');
         }
     }
 ?>

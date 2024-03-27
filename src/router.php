@@ -55,6 +55,14 @@ switch ($route) {
         $accueilPage->deconnexion();
         break;    
 
+    case URL_SUPPRIMERDEMANDE: //Demande de suppression de compte
+        $utilisateurPage->supprimer();
+        break;    
+
+    case URL_SUPPRIMER: //Supprimer le compte
+        $utilisateurPage->delete();
+        break;    
+
     default: //404
         $accueilPage->pageNotFound();
         break;

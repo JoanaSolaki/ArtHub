@@ -14,7 +14,7 @@ require "include/navbar.php";
         echo "<p>" . $utilisateur->getPrenom() . " " . $utilisateur->getNom() . "<br>" . $utilisateur->getMail();
         ?>
         <a href="/modifier">Modifier le profil</a>
-        <a href="">Supprimer mon compte</a>
+        <a href="/supprimer">Supprimer mon compte</a>
     </article>
 
     <article>

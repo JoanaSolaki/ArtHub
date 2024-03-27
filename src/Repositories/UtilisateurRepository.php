@@ -83,8 +83,6 @@ class UtilisateurRepository extends Database {
             "mail" => $mail,
             "id" => $utilisateurId
         ]);
-
-        echo "<p>Les données ont été modifiées.</p>";
         
         $requete->closeCursor();
     }
@@ -96,8 +94,6 @@ class UtilisateurRepository extends Database {
             "id" => $utilisateurId
         ]);
 
-        echo "<p>Les données ont été supprimés.</p>";
-        
         $requete->closeCursor();
     }
 }
