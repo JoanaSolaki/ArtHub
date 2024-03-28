@@ -10,6 +10,7 @@
             ];
             $this->render("Sinscrire", $viewData);
         }
+
         function sinscrire($nom, $prenom, $mdp, $mail) {
             $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);   
 
@@ -25,7 +26,6 @@
                     break;
                 }
             }
-
             if ($emailExiste == true) {
                 $titre = "Erreur inscription";
                 $viewData = [
@@ -37,7 +37,6 @@
                 $_SESSION['utilisateurId'] = $newUtilisateurId;
                 header("Location: /profil");
             }
-
         }
     }
 

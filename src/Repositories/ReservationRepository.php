@@ -12,21 +12,37 @@ class ReservationRepository extends Database {
         return $data;
     }
 
-    public function selectById ($reservationId) {
-        $requete = $this->getDb()->prepare('SELECT * FROM reservation WHERE id = :id');
+    public function selectByUtilisateurId ($utilisateurId) {
+        $requete = $this->getDb()->prepare('SELECT * FROM reservation WHERE utilisateur_id = :id');
 
         $requete->execute([
-            "id" => $reservationId
+            "id" => $utilisateurId
         ]);
         
         $data = $requete->setFetchMode(PDO::FETCH_CLASS, Reservation::class);
 
-        $data = $requete->fetch();
+        $data = $requete->fetchAll();
 
         $requete->closeCursor();
 
         return $data;   
     }
+
+    // public function selectJoin ($utilisateurId) {
+    //     $requete = $this->getDb()->prepare('SELECT reservation.*, professeur.*, salle.* FROM reservation JOIN professeur on reservation.professeur_id = professeur.id JOIN salle on reservation.salle_id = salle.id WHERE utilisateur_id = :id');
+
+    //     $requete->execute([
+    //         "id" => $utilisateurId
+    //     ]);
+
+    //     $data = $requete->setFetchMode(PDO::FETCH_ASSOC);
+
+    //     $data = $requete->fetchAll();
+
+    //     $requete->closeCursor();
+
+    //     return $data;  
+    // }
 
     public function create ($newDate, $newHeure, $newUtilisateurId, $newProfesseurId, $newSalleId) {
         $requete = $this->getDb()->prepare("INSERT INTO reservation (date, heure, utilisateur_id, professeur_id, salle_id) VALUE (:date, :heure, :utilisateur_id, :professeur_id, :salle_id)");
@@ -38,8 +54,6 @@ class ReservationRepository extends Database {
             "professeur_id" => $newProfesseurId,
             "salle_id" => $newSalleId
         ]);
-
-        echo "<p>La réservation à bien été ajouté !</p>";
 
         $requete->closeCursor();
     }
@@ -60,8 +74,6 @@ class ReservationRepository extends Database {
             "id" => $reservationId
         ]);
 
-        echo "<p>Les données ont été modifiées.</p>";
-        
         $requete->closeCursor();
     }
 
@@ -72,8 +84,6 @@ class ReservationRepository extends Database {
             "id" => $reservationId
         ]);
 
-        echo "<p>Les données ont été supprimés.</p>";
-        
         $requete->closeCursor();
     }
 }

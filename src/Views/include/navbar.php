@@ -10,7 +10,7 @@
 
                     $utilisateur = $getUtilisateur->selectById($id);
 
-                    echo '<p>' . $utilisateur->getPrenom() . " " . $utilisateur->getNom() . '</p>';
+                    echo '<a href="/profil">' . $utilisateur->getPrenom() . " " . $utilisateur->getNom() . '</a>';
                     echo '<a href="/deconnexion">Se deconnecter</a>';
                 } else { //Sinon c'est le menu de base
                     echo '<a href="/sinscrire">S\'inscrire</a>

@@ -19,6 +19,27 @@ require "include/navbar.php";
 
     <article>
         <h2>Vos réservations :</h2>
+
+        <?php
+            foreach ($reservationsAll as $reservationAll) {
+                $reservation = $reservationAll['reservation'];
+                $professeur = $reservationAll['professeur'];
+                $salle = $reservationAll['salle'];
+
+                echo '<div class="reservation">' .
+                    '<h3>Cours le ' . $reservation->getDate() . ' à ' . $reservation->getHeure() . '</h3>' .
+                    '</div>';
+
+                echo '<div class="infoReservation"> <p>Adresse : ' . $salle->getAdresse() . '</p>' .
+                    '<p>' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '<br>' .
+                    $professeur->getDescription() . '</p>' .
+                    '<a href="">Modifier</a>' .
+                    '<a href="">Supprimer</a>' .
+                    '</div>';
+            }
+        ?>
+        </div>
+
     </article>
 
 </section>

@@ -20,7 +20,8 @@ switch ($route) {
     case URL_SINSCRIREPAGE: //Page d'inscription
         if ($methode == 'GET') {
             $sinscrirePage->index();
-        } else {
+        } 
+        if ($methode == 'POST') {
             $sinscrirePage->sinscrire($_POST['nom'], $_POST['prenom'], $_POST['mdp'], $_POST['mail']);
         }
         break;
@@ -48,7 +49,12 @@ switch ($route) {
         break;    
 
     case URL_RESERVATIONPAGE: //Page utilisateur
-        $reservationPage->index();
+        if ($methode == 'GET') { 
+            $reservationPage->index();
+        }
+        if ($methode == 'POST') {
+            $reservationPage->reserver($_POST['date'], $_POST['heure'],$_SESSION['utilisateurId'], $_POST['professeur'], $_POST['salle']);
+        }
         break;    
 
     case URL_DECONNEXION: //Page logout
