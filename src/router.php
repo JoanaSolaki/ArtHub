@@ -6,11 +6,8 @@ $methode = $_SERVER['REQUEST_METHOD'];
 //echo('<p>' . $route . '</p>');
 
 $accueilPage = new AccueilController();
-$sinscrirePage = new SinscrireController();
-$connexionPage = new ConnexionController();
 $utilisateurPage = new UtilisateurController();
 $reservationPage = new ProfesseursController();
-$modifierPage = new ModifierController();
 
 switch ($route) {
     case URL_ACCUEILPAGE: //Page d'accueil
@@ -19,28 +16,28 @@ switch ($route) {
 
     case URL_SINSCRIREPAGE: //Page d'inscription
         if ($methode == 'GET') {
-            $sinscrirePage->index();
+            $utilisateurPage->indexSinscrire();
         } 
         if ($methode == 'POST') {
-            $sinscrirePage->sinscrire($_POST['nom'], $_POST['prenom'], $_POST['mdp'], $_POST['mail']);
+            $utilisateurPage->sinscrire($_POST['nom'], $_POST['prenom'], $_POST['mdp'], $_POST['mail']);
         }
         break;
 
     case URL_MODIFICATIONPAGE: //Page de modification
         if ($methode == 'GET') {
-            $modifierPage->index();
+            $utilisateurPage->indexModifier();
         } 
         if ($methode == 'POST') {
-            $modifierPage->modifier($_POST['nom'], $_POST['prenom'], $_POST['mdp'], $_POST['mail'], $_SESSION['utilisateurId']);
+            $utilisateurPage->modifier($_POST['nom'], $_POST['prenom'], $_POST['mdp'], $_POST['mail'], $_SESSION['utilisateurId']);
         }
         break;
 
     case URL_CONNEXIONPAGE: //Page de connexion
         if ($methode == 'GET') {
-            $connexionPage->index();
+            $utilisateurPage->indexConnexion();
         } 
         if ($methode == 'POST') {
-            $connexionPage->connexion($_POST['mail'], $_POST['mdp']);
+            $utilisateurPage->connexion($_POST['mail'], $_POST['mdp']);
         }
         break;
 

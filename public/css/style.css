@@ -128,7 +128,14 @@ form label {
     margin: 20px;
 }
 
-form input {
+fieldset {
+    margin: 20px 0;
+    display: flex;
+    flex-flow: column;
+    padding: 20px;
+}
+
+form input, form select {
     padding: 10px;
 }
 

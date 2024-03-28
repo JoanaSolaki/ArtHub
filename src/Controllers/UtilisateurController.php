@@ -4,18 +4,6 @@
     class UtilisateurController {
         use Response;
 
-        
-        function debug($var, $exit = true)
-        {
-            echo '<pre>';
-            var_dump($var);
-            echo '</pre>';
-
-            if ($exit) {
-                exit;
-            };
-        }
-
         function index () {
             $utilisateurRepository = new UtilisateurRepository();
             $reservationRepository = new ReservationRepository();
@@ -28,10 +16,6 @@
 
             $reservations = $reservationRepository->selectByUtilisateurId($id);
 
-            // $reservationProf = [];
-
-            // $reservationSalle = [];
-
             $reservationAll = [];
 
             foreach ($reservations as $reservation) {
@@ -41,7 +25,6 @@
                 $salleReserver = $reservation->getSalleId();
                 $salle = $salleRepository->selectById($salleReserver);
         
-                // Ajouter les informations de la réservation, du professeur et de la salle dans le tableau $reservationAll
                 $reservationAll[] = [
                     'reservation' => $reservation,
                     'professeur' => $professeur,
@@ -49,27 +32,12 @@
                 ];
             }
 
-            // foreach ($reservations as $reservation) {
-            //     $profReserver = $reservation->getProfesseurId();
-            //     $professeurs = $professeurRepository->selectById($profReserver);
-            //     $reservationProf[$reservation->getId()] = $professeurs;
-            // }
-
-            // foreach ($reservations as $reservation) {
-            //     $salleReserver = $reservation->getSalleId();
-            //     $salles = $salleRepository->selectById($salleReserver);
-            //     $reservationSalle[$reservation->getId()] = $salles;
-            // }
-
             $titre = 'Profil - ArtHub';
 
             $viewData = [
                 'titre' => $titre,
                 'utilisateur' => $utilisateur,
                 'reservationsAll' => $reservationAll
-                // 'reservations' => $reservations,
-                // 'professeurs' => $reservationProf,
-                // 'salles' => $reservationSalle
             ];
 
             $this->render("Profil", $viewData);
@@ -95,6 +63,94 @@
             session_destroy();
 
             header('Location: /');
+        }
+
+        function indexSinscrire () {
+            $titre = "S'inscrire";
+            $viewData = [
+                'titre' => $titre
+            ];
+            $this->render("Sinscrire", $viewData);
+        }
+    
+        function sinscrire($nom, $prenom, $mdp, $mail) {
+            $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);   
+    
+            $newUtilisateur = new UtilisateurRepository();
+                        
+            $newMail = $mail;
+            $users = $newUtilisateur->selectAllMail();
+            
+            $emailExiste = false;
+            foreach ($users as $user) {
+                if($user->getMail() === $newMail) {
+                    $emailExiste = true;
+                    break;
+                }
+            }
+            if ($emailExiste == true) {
+                $titre = "Erreur inscription";
+                $viewData = [
+                    'titre' => $titre
+                ];
+                $this->render("ErreurInscription", $viewData);
+            } else {
+                $newUtilisateurId = $newUtilisateur->create($nom, $prenom, $mdpHash, $newMail);
+                $_SESSION['utilisateurId'] = $newUtilisateurId;
+                header("Location: /profil");
+            }
+        }
+    
+        function indexConnexion () {
+            $titre = "Se connecter";
+            $viewData = [
+                'titre' => $titre
+            ];
+            $this->render("Connexion", $viewData);
+        }
+    
+        function connexion ($mail, $mdp) {
+    
+            $usersMail = new UtilisateurRepository();
+    
+            $identifiant = $usersMail->selectUserByMail($mail);
+    
+            if ($identifiant && password_verify($mdp, $identifiant['mdp'])) {
+                session_start();
+                $_SESSION['utilisateurId'] = $identifiant['id'];
+                header('Location: /profil');
+            } else {
+                $titre = "Se connecter";
+                $viewData = [
+                    'titre' => $titre
+                ];
+                $this->render("ErreurConnexion", $viewData);;
+            }
+        }
+
+        function indexModifier () {
+            $titre = "Modifier";
+
+            $currentUtilisateur = new UtilisateurRepository();
+
+            $currentUtilisateur->selectById($_SESSION['utilisateurId']);
+
+            $viewData = [
+                'titre' => $titre,
+                'utilisateur' => $currentUtilisateur
+            ];
+
+            $this->render("Modifier", $viewData);
+        }
+
+        function modifier($nom, $prenom, $mdp, $mail, $id) {
+            $mdpHash = password_hash($mdp, PASSWORD_DEFAULT);
+
+            $newUtilisateur = new UtilisateurRepository();
+
+            $newUtilisateur->update($nom, $prenom, $mdpHash, $mail, $id);
+
+            header("Location: /profil");
         }
     }
 ?>

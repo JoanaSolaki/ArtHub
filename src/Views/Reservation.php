@@ -41,7 +41,7 @@ require "include/navbar.php";
                 <legend for="cours">Choissisez vos cours :</legend>
                 <?php
                     foreach ($cours as $cours) {
-                        echo '<input type="checkbox" value="' . $cours->getId() .'">' . $cours->getType() . '</input>';
+                        echo '<div><input type="checkbox" value="' . $cours->getId() .'">' . '<label for="cours">' . $cours->getType() . '</label></div>';
                     }
                 ?>
             </fieldset>
