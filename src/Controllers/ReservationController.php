@@ -32,11 +32,11 @@
             $this->render("ModifierReservation", $viewData);
         }
 
-        function modifier($date, $heure, $utiltisateurId, $professeurId, $salleId, $reservationId) {
+        function modifier($date, $heure, $utiltisateurId, $professeurId, $salleId, $reservationId, $cours) {
 
             $newReservation = new ReservationRepository();
 
-            $newReservation->update($date, $heure, $utiltisateurId, $professeurId, $salleId, $reservationId);
+            $newReservation->update($date, $heure, $utiltisateurId, $professeurId, $salleId, $reservationId, $cours);
 
             header("Location: /profil");
         }

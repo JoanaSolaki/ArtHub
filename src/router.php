@@ -60,8 +60,7 @@ switch ($route) {
             $reservationCRUDPage->indexModifier();
         }
         if ($methode == 'POST') {
-            $reservationCRUDPage->modifier($_POST['date'], $_POST['heure'],$_SESSION['utilisateurId'], $_POST['professeur'], $_POST['salle'], 
-            $_GET['id']);
+            $reservationCRUDPage->modifier($_POST['date'], $_POST['heure'],$_SESSION['utilisateurId'], $_POST['professeur'], $_POST['salle'], $_GET['id'], $_POST['cours']);
         }
         break;    
         

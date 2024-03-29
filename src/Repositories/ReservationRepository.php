@@ -84,7 +84,7 @@ class ReservationRepository extends Database {
         $requete->closeCursor();
     }
 
-    public function update ($date, $heure, $utiltisateurId, $professeurId, $salleId, $reservationId) {
+    public function update ($date, $heure, $utiltisateurId, $professeurId, $salleId, $reservationId, $cours) {
         $query = 'UPDATE reservation 
                 SET date = :date, heure = :heure, utilisateur_id = :utilisateur_id, professeur_id = :professeur_id, salle_id = :salle_id
                 WHERE id= :id';
@@ -100,6 +100,20 @@ class ReservationRepository extends Database {
             "id" => $reservationId
         ]);
 
+        $queryDelete = 'DELETE FROM reservation_cours WHERE reservation_id = :reservation_id';
+        $requeteDelete = $this->getDb()->prepare($queryDelete);
+        $requeteDelete->execute(["reservation_id" => $reservationId]);
+    
+        foreach($cours as $cour) {
+            $requeteCours = $this->getDb()->prepare("INSERT INTO reservation_cours (reservation_id, cours_id) VALUE (:reservation_id, :cours_id)");
+    
+            $requeteCours->execute([
+                "reservation_id" => $reservationId,
+                "cours_id" => $cour
+            ]);
+        }
+
+        $requeteDelete->closeCursor();
         $requete->closeCursor();
     }
 
