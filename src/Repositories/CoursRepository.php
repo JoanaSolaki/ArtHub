@@ -21,10 +21,24 @@ class CoursRepository extends Database {
         
         $data = $requete->setFetchMode(PDO::FETCH_CLASS, Cours::class);
 
-        $data = $requete->fetchAll();
+        $data = $requete->fetch();
 
         $requete->closeCursor();
 
         return $data;   
+    }
+
+    public function selectByReservationId($reservationId) {
+        $requete = $this->getDb()->prepare('SELECT * FROM cours JOIN reservation_cours ON cours.id = reservation_cours.cours_id WHERE reservation_cours.reservation_id = :id');
+    
+        $requete->execute([
+            "id" => $reservationId
+        ]);
+    
+        $data = $requete->fetchAll(PDO::FETCH_ASSOC);
+    
+        $requete->closeCursor();
+    
+        return $data;
     }
 }

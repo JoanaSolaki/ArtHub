@@ -23,8 +23,8 @@ require "include/navbar.php";
             foreach ($reservationsAll as $reservationAll) {
                 $reservation = $reservationAll['reservation'];
                 $professeur = $reservationAll['professeur'];
-                $cours = $reservationAll['cours'];
                 $salle = $reservationAll['salle'];
+                $cours = $reservationAll['cours'];
 
                 $idReservation = $reservation->getId();
 
@@ -36,9 +36,10 @@ require "include/navbar.php";
 
                 echo '<div class="infoReservation"> <p>Adresse : ' . $salle->getAdresse() . '</p>' .
                     '<p>' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '</p>';
-                    
+
                 foreach ($cours as $cour) {
-                   echo '<p>' . $cour->getType() . '</p>'; }
+                    echo '<p>' . $cour['type'] . '</p>';
+                }
                 echo '<a href="/modifierReservation' . '?id=' . $idReservation . '" class="reservation">Modifier</a>' .
                 '<a href="/deleteReservation?id=' . $idReservation . ' " class="supprimer">Supprimer</a>' .
                 '</div>';

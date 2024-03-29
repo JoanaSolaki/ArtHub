@@ -81,7 +81,6 @@ class ReservationRepository extends Database {
                 "cours_id" => $cour
             ]);
         }
-
         $requete->closeCursor();
     }
 

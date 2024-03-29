@@ -26,14 +26,13 @@
                 $salleReserver = $reservation->getSalleId();
                 $salle = $salleRepository->selectById($salleReserver);
 
-                $coursReserver = $reservation->getSalleId();
-                $cours = $coursRepository->selectById($coursReserver);
-        
+                $coursReserver = $coursRepository->selectByReservationId($reservation->getId());
+
                 $reservationAll[] = [
                     'reservation' => $reservation,
                     'professeur' => $professeur,
                     'salle' => $salle,
-                    'cours' => $cours
+                    'cours' => $coursReserver
                 ];
             }
 
@@ -42,7 +41,7 @@
             $viewData = [
                 'titre' => $titre,
                 'utilisateur' => $utilisateur,
-                'reservationsAll' => $reservationAll
+                'reservationsAll' => $reservationAll,
             ];
 
             $this->render("Profil", $viewData);

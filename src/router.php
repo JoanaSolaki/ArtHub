@@ -46,7 +46,7 @@ switch ($route) {
         $utilisateurPage->index();
         break;    
 
-    case (str_contains($route, URL_RESERVATIONPAGE) ? true : false): //Page reservation
+    case URL_RESERVATIONPAGE: //Page reservation
         if ($methode == 'GET') { 
             $reservationPage->index();
         }
