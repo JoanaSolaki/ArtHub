@@ -28,6 +28,22 @@ class ReservationRepository extends Database {
         return $data;   
     }
 
+    public function selectById ($reservationId) {
+        $requete = $this->getDb()->prepare('SELECT * FROM reservation WHERE id = :id');
+
+        $requete->execute([
+            "id" => $reservationId
+        ]);
+        
+        $data = $requete->setFetchMode(PDO::FETCH_CLASS, Reservation::class);
+
+        $data = $requete->fetch();
+
+        $requete->closeCursor();
+
+        return $data;   
+    }
+
     // public function selectJoin ($utilisateurId) {
     //     $requete = $this->getDb()->prepare('SELECT reservation.*, professeur.*, salle.* FROM reservation JOIN professeur on reservation.professeur_id = professeur.id JOIN salle on reservation.salle_id = salle.id WHERE utilisateur_id = :id');
 
@@ -60,7 +76,7 @@ class ReservationRepository extends Database {
 
     public function update ($date, $heure, $utiltisateurId, $professeurId, $salleId, $reservationId) {
         $query = 'UPDATE reservation 
-                SET name = date, heure, utilisateur_id, professeur_id, salle_id
+                SET date = :date, heure = :heure, utilisateur_id = :utilisateur_id, professeur_id = :professeur_id, salle_id = :salle_id
                 WHERE id= :id';
 
         $requete = $this->getDb()->prepare($query);

@@ -21,10 +21,34 @@ require "include/navbar.php";
         <h2>Vos réservations :</h2>
 
         <?php
+            // foreach ($reservationsAll as $reservationAll) {
+            //     $reservation = $reservationAll['reservation'];
+            //     $professeur = $reservationAll['professeur'];
+            //     $salle = $reservationAll['salle'];
+
+            //     $idReservation = $reservation->getId();
+
+            //     $_GET['idReservation'] = $idReservation;
+
+            //     echo '<div class="reservation">' .
+            //         '<h3>Cours le ' . $reservation->getDate() . ' à ' . $reservation->getHeure() . '</h3>' .
+            //         '</div>';
+
+            //     echo '<div class="infoReservation"> <p>Adresse : ' . $salle->getAdresse() . '</p>' .
+            //         '<p>' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '<br>' .
+            //         $professeur->getDescription() . '</p>' .
+            //         '<a href="/modifier_reservation' . '?id=' . $idReservation . '">Modifier</a>' .
+            //         '<a href="/delete_reservation?id=' . $_GET['idReservation'] . '">Supprimer</a>' .
+            //         '</div>';
+            // }
             foreach ($reservationsAll as $reservationAll) {
                 $reservation = $reservationAll['reservation'];
                 $professeur = $reservationAll['professeur'];
                 $salle = $reservationAll['salle'];
+
+                $idReservation = $reservation->getId();
+
+                $_SESSION['reservationId'] = $idReservation;
 
                 echo '<div class="reservation">' .
                     '<h3>Cours le ' . $reservation->getDate() . ' à ' . $reservation->getHeure() . '</h3>' .
@@ -33,8 +57,8 @@ require "include/navbar.php";
                 echo '<div class="infoReservation"> <p>Adresse : ' . $salle->getAdresse() . '</p>' .
                     '<p>' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '<br>' .
                     $professeur->getDescription() . '</p>' .
-                    '<a href="">Modifier</a>' .
-                    '<a href="">Supprimer</a>' .
+                    '<a href="/modifierReservation">Modifier</a>' .
+                    '<a href="/deleteReservation">Supprimer</a>' .
                     '</div>';
             }
         ?>

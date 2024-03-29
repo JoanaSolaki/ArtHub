@@ -8,6 +8,7 @@ $methode = $_SERVER['REQUEST_METHOD'];
 $accueilPage = new AccueilController();
 $utilisateurPage = new UtilisateurController();
 $reservationPage = new ProfesseursController();
+$reservationCRUDPage = new ReservationController();
 
 switch ($route) {
     case URL_ACCUEILPAGE: //Page d'accueil
@@ -45,7 +46,7 @@ switch ($route) {
         $utilisateurPage->index();
         break;    
 
-    case URL_RESERVATIONPAGE: //Page utilisateur
+    case URL_RESERVATIONPAGE: //Page reservation
         if ($methode == 'GET') { 
             $reservationPage->index();
         }
@@ -53,6 +54,19 @@ switch ($route) {
             $reservationPage->reserver($_POST['date'], $_POST['heure'],$_SESSION['utilisateurId'], $_POST['professeur'], $_POST['salle']);
         }
         break;    
+
+    case URL_MODIFICATIONRESERVATION : //Page modification de reservation
+        if ($methode == 'GET') { 
+            $reservationCRUDPage->indexModifier();
+        }
+        if ($methode == 'POST') {
+            $reservationCRUDPage->modifier($_POST['date'], $_POST['heure'],$_SESSION['utilisateurId'], $_POST['professeur'], $_POST['salle'], $_SESSION['reservationId']);
+        }
+        break;    
+        
+    case URL_SUPPRIMERRESERVATION: //Supprimer la reservation
+        $reservationCRUDPage->delete();
+        break;   
 
     case URL_DECONNEXION: //Page logout
         $accueilPage->deconnexion();
