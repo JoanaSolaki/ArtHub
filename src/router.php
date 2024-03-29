@@ -46,25 +46,26 @@ switch ($route) {
         $utilisateurPage->index();
         break;    
 
-    case URL_RESERVATIONPAGE: //Page reservation
+    case (str_contains($route, URL_RESERVATIONPAGE) ? true : false): //Page reservation
         if ($methode == 'GET') { 
             $reservationPage->index();
         }
         if ($methode == 'POST') {
-            $reservationPage->reserver($_POST['date'], $_POST['heure'],$_SESSION['utilisateurId'], $_POST['professeur'], $_POST['salle']);
+            $reservationPage->reserver($_POST['date'], $_POST['heure'],$_SESSION['utilisateurId'], $_POST['professeur'], $_POST['salle'], $_POST['cours']);
         }
         break;    
 
-    case URL_MODIFICATIONRESERVATION : //Page modification de reservation
+    case (str_contains($route, URL_MODIFICATIONRESERVATION) ? true : false): //Page modification de reservation
         if ($methode == 'GET') { 
             $reservationCRUDPage->indexModifier();
         }
         if ($methode == 'POST') {
-            $reservationCRUDPage->modifier($_POST['date'], $_POST['heure'],$_SESSION['utilisateurId'], $_POST['professeur'], $_POST['salle'], $_SESSION['reservationId']);
+            $reservationCRUDPage->modifier($_POST['date'], $_POST['heure'],$_SESSION['utilisateurId'], $_POST['professeur'], $_POST['salle'], 
+            $_GET['id']);
         }
         break;    
         
-    case URL_SUPPRIMERRESERVATION: //Supprimer la reservation
+    case (str_contains($route, URL_SUPPRIMERRESERVATION) ? true : false) : //Supprimer la reservation
         $reservationCRUDPage->delete();
         break;   
 

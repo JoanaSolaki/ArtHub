@@ -60,7 +60,7 @@ class ReservationRepository extends Database {
     //     return $data;  
     // }
 
-    public function create ($newDate, $newHeure, $newUtilisateurId, $newProfesseurId, $newSalleId) {
+    public function create ($newDate, $newHeure, $newUtilisateurId, $newProfesseurId, $newSalleId, $newCours) {
         $requete = $this->getDb()->prepare("INSERT INTO reservation (date, heure, utilisateur_id, professeur_id, salle_id) VALUE (:date, :heure, :utilisateur_id, :professeur_id, :salle_id)");
 
         $requete->execute([
@@ -70,6 +70,17 @@ class ReservationRepository extends Database {
             "professeur_id" => $newProfesseurId,
             "salle_id" => $newSalleId
         ]);
+
+        $reservationId = $this->getDb()->lastInsertId();
+
+        foreach($newCours as $cour) {
+            $requeteCours = $this->getDb()->prepare("INSERT INTO reservation_cours (reservation_id, cours_id) VALUE (:reservation_id, :cours_id)");
+
+            $requeteCours->execute([
+                "reservation_id" => $reservationId,
+                "cours_id" => $cour
+            ]);
+        }
 
         $requete->closeCursor();
     }

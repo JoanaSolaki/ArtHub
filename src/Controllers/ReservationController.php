@@ -44,7 +44,7 @@
         function delete () {
             $reservationRepository = new ReservationRepository();
 
-            $id = $_SESSION['reservationId'];
+            $id = $_GET['id'];
             
             $reservationRepository->delete($id);
 

@@ -20,45 +20,28 @@ require "include/navbar.php";
         <h2 class="reservation" >Vos réservations :</h2>
 
         <?php
-            // foreach ($reservationsAll as $reservationAll) {
-            //     $reservation = $reservationAll['reservation'];
-            //     $professeur = $reservationAll['professeur'];
-            //     $salle = $reservationAll['salle'];
-
-            //     $idReservation = $reservation->getId();
-
-            //     $_GET['idReservation'] = $idReservation;
-
-            //     echo '<div class="reservation">' .
-            //         '<h3>Cours le ' . $reservation->getDate() . ' à ' . $reservation->getHeure() . '</h3>' .
-            //         '</div>';
-
-            //     echo '<div class="infoReservation"> <p>Adresse : ' . $salle->getAdresse() . '</p>' .
-            //         '<p>' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '<br>' .
-            //         $professeur->getDescription() . '</p>' .
-            //         '<a href="/modifier_reservation' . '?id=' . $idReservation . '">Modifier</a>' .
-            //         '<a href="/delete_reservation?id=' . $_GET['idReservation'] . '">Supprimer</a>' .
-            //         '</div>';
-            // }
             foreach ($reservationsAll as $reservationAll) {
                 $reservation = $reservationAll['reservation'];
                 $professeur = $reservationAll['professeur'];
+                $cours = $reservationAll['cours'];
                 $salle = $reservationAll['salle'];
 
                 $idReservation = $reservation->getId();
 
-                $_SESSION['reservationId'] = $idReservation;
+                $_GET['idReservation'] = $idReservation;
 
                 echo '<div class="reservation">' .
                     '<h3>Cours le ' . $reservation->getDate() . ' à ' . $reservation->getHeure() . '</h3>' .
                     '</div>';
 
                 echo '<div class="infoReservation"> <p>Adresse : ' . $salle->getAdresse() . '</p>' .
-                    '<p>' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '<br>' .
-                    $professeur->getDescription() . '</p>' .
-                    '<a href="/modifierReservation" class ="reservation">Modifier</a>' .
-                    '<a href="/deleteReservation" class ="supprimer">Supprimer</a>' .
-                    '</div>';
+                    '<p>' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '</p>';
+                    
+                foreach ($cours as $cour) {
+                   echo '<p>' . $cour->getType() . '</p>'; }
+                echo '<a href="/modifierReservation' . '?id=' . $idReservation . '" class="reservation">Modifier</a>' .
+                '<a href="/deleteReservation?id=' . $idReservation . ' " class="supprimer">Supprimer</a>' .
+                '</div>';
             }
         ?>
         </div>

@@ -21,7 +21,7 @@ class CoursRepository extends Database {
         
         $data = $requete->setFetchMode(PDO::FETCH_CLASS, Cours::class);
 
-        $data = $requete->fetch();
+        $data = $requete->fetchAll();
 
         $requete->closeCursor();
 

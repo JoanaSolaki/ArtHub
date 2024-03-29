@@ -24,10 +24,10 @@
             $this->render("Reservation", $viewData);
         }
 
-        function reserver ($date, $heure, $id, $professeur, $salle) {
+        function reserver ($date, $heure, $id, $professeur, $salle, $cours) {
             $reservationRepository = new ReservationRepository();
 
-            $reservationRepository->create($date, $heure, $id, $professeur, $salle);
+            $reservationRepository->create($date, $heure, $id, $professeur, $salle, $cours);
 
             header('Location: /profil');
         }

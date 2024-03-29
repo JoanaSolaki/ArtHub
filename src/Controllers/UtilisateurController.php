@@ -9,6 +9,7 @@
             $reservationRepository = new ReservationRepository();
             $professeurRepository = new ProfesseurRepository();
             $salleRepository = new SalleRepository();
+            $coursRepository = new CoursRepository();
 
             $id = $_SESSION ['utilisateurId'];
 
@@ -24,11 +25,15 @@
                 
                 $salleReserver = $reservation->getSalleId();
                 $salle = $salleRepository->selectById($salleReserver);
+
+                $coursReserver = $reservation->getSalleId();
+                $cours = $coursRepository->selectById($coursReserver);
         
                 $reservationAll[] = [
                     'reservation' => $reservation,
                     'professeur' => $professeur,
-                    'salle' => $salle
+                    'salle' => $salle,
+                    'cours' => $cours
                 ];
             }
 
