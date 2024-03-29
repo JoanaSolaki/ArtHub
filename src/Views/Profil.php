@@ -16,7 +16,7 @@ require "include/navbar.php";
         <a href="/supprimer" class="supprimer">Supprimer mon compte</a>
     </article class="profil">
 
-    <article class="profil">
+    <article class="profil reservation">
         <h2 class="reservation" >Vos réservations :</h2>
 
         <?php
@@ -31,8 +31,7 @@ require "include/navbar.php";
                 $_GET['idReservation'] = $idReservation;
 
                 echo '<div class="reservation">' .
-                    '<h3>Cours le ' . $reservation->getDate() . ' à ' . $reservation->getHeure() . '</h3>' .
-                    '</div>';
+                    '<h3>Cours le ' . $reservation->getDate() . ' à ' . $reservation->getHeure() . '</h3>';
 
                 echo '<div class="infoReservation"> <p>Adresse : ' . $salle->getAdresse() . '</p>' .
                     '<p>' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '</p>';
@@ -40,8 +39,8 @@ require "include/navbar.php";
                 foreach ($cours as $cour) {
                     echo '<p>' . $cour['type'] . '</p>';
                 }
-                echo '<a href="/modifierReservation' . '?id=' . $idReservation . '" class="reservation">Modifier</a>' .
-                '<a href="/deleteReservation?id=' . $idReservation . ' " class="supprimer">Supprimer</a>' .
+                echo '<div class="flex"><a href="/modifierReservation' . '?id=' . $idReservation . '" class="reservation">Modifier</a>' .
+                '<a href="/deleteReservation?id=' . $idReservation . ' " class="supprimer">Supprimer</a></div>' .
                 '</div>';
             }
         ?>

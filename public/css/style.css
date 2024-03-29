@@ -56,14 +56,6 @@ a {
     margin: 10px 0;
 }
 
-a.reservation {
-    background-color: var(--secondaryColor);
-}
-
-a.supprimer {
-    background-color: var(--dangerColor);
-}
-
 /* NAVBAR */
 
 .navbar {
@@ -167,6 +159,44 @@ h2.reservation{
 
 article.profil {
     margin: 0 60px;
+}
+
+/* RESERVATIONS */
+
+article.reservation {
+    width: 50%;
+}
+
+div.reservation {
+    border-radius: 2%;
+    border: solid 2px var(--secondaryColor);
+    background-color: var(--white);
+}
+
+.reservation h3 {
+    background-color: var(--secondaryColor);
+    width: 100%;
+    display: block;
+    padding: 20px;
+}
+
+.infoReservation {
+    padding: 20px;
+}
+
+a.reservation {
+    background-color: var(--secondaryColor);
+    margin: 10px;
+}
+
+a.reservation:hover, a.supprimer:hover{
+    background-color: var(--tertiaryColor);
+    color: var(--darkColor);
+}
+
+a.supprimer {
+    background-color: var(--dangerColor);
+    margin: 10px;
 }
 
 /* FOOTER */
