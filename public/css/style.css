@@ -17,6 +17,7 @@ body {
     margin: 0 auto;
     max-width: 100%;
     font-family: "Inter", sans-serif;
+    color: var(--darkColor);
 }
 
 .flex {
@@ -46,8 +47,21 @@ h1 {
     margin: 20px 0;
 }
 
-p {
-    color: var(--darkColor);
+a {
+    padding: 10px;
+    transition: 300ms;
+    width: 160px;
+    background-color: var(--mainColor);
+    text-align: center;
+    margin: 10px 0;
+}
+
+a.reservation {
+    background-color: var(--secondaryColor);
+}
+
+a.supprimer {
+    background-color: var(--dangerColor);
 }
 
 /* NAVBAR */
@@ -63,6 +77,8 @@ p {
     padding: 20px;
     background-color: var(--white);
     transition: 300ms;
+    width: auto;
+    margin: 0px;
 }
 
 .navbar a:hover {
@@ -137,6 +153,20 @@ fieldset {
 
 form input, form select {
     padding: 10px;
+}
+
+/* PROFIL */
+
+section.flex {
+    align-items: flex-start;
+}
+
+h2.reservation{
+    margin-top: 80px;
+}
+
+article.profil {
+    margin: 0 60px;
 }
 
 /* FOOTER */

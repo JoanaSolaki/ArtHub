@@ -18,7 +18,7 @@ require "include/navbar.php";
                     '<p>' . $professeur->getDescription() . '<br>' .
                     $professeur->getPrixHeure() . '€/H<br>' .
                     $professeur->getVille() . '</p>' .
-                    '<a href="' . URL_RESERVATIONPAGE . '">Réserver</a>
+                    '<a href="' . URL_RESERVATIONPAGE . '" class="reservation">Réserver</a>
                   </div>
                 </div>';
             }

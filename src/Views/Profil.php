@@ -5,20 +5,19 @@ if (!isset($_SESSION['utilisateurId'])) {
 require "include/header.php";
 require "include/navbar.php";
 ?>
-<section class="wrapper">
+<section class="wrapper flex">
 
-    <h1>Votre Profil</h1>
-
-    <article>
+    <article class="profil">
+        <h1>Votre Profil</h1>
         <?php
         echo "<p>" . $utilisateur->getPrenom() . " " . $utilisateur->getNom() . "<br>" . $utilisateur->getMail();
         ?>
-        <a href="/modifier">Modifier le profil</a>
-        <a href="/supprimer">Supprimer mon compte</a>
-    </article>
+        <a href="/modifier" class="reservation">Modifier le profil</a>
+        <a href="/supprimer" class="supprimer">Supprimer mon compte</a>
+    </article class="profil">
 
-    <article>
-        <h2>Vos réservations :</h2>
+    <article class="profil">
+        <h2 class="reservation" >Vos réservations :</h2>
 
         <?php
             // foreach ($reservationsAll as $reservationAll) {
@@ -57,8 +56,8 @@ require "include/navbar.php";
                 echo '<div class="infoReservation"> <p>Adresse : ' . $salle->getAdresse() . '</p>' .
                     '<p>' . $professeur->getPrenom() . ' ' . $professeur->getNom() . '<br>' .
                     $professeur->getDescription() . '</p>' .
-                    '<a href="/modifierReservation">Modifier</a>' .
-                    '<a href="/deleteReservation">Supprimer</a>' .
+                    '<a href="/modifierReservation" class ="reservation">Modifier</a>' .
+                    '<a href="/deleteReservation" class ="supprimer">Supprimer</a>' .
                     '</div>';
             }
         ?>
